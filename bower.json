@@ -1,0 +1,20 @@
+{
+  "name": "nazrars.github.io",
+  "version": "1.0.0",
+  "homepage": "https://nazrars.github.io/",
+  "authors": [
+    "nazrars <nazrars@gmail.com>"
+  ],
+  "moduleType": [
+    "node"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "devDependencies": {}
+}

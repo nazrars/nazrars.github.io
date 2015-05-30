@@ -1,0 +1,27 @@
+{
+  "name": "nazrars.github.io",
+  "version": "1.0.0",
+  "description": "",
+  "dependencies": {
+    "bower": "^1.4.1"
+  },
+  "devDependencies": {
+    "gulp": "^3.8.11",
+    "gulp-autoprefixer": "^2.3.0",
+    "gulp-sass": "^2.0.1"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://nazrars:index.html@github.com/nazrars/nazrars.github.io"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nazrars/nazrars.github.io/issues"
+  },
+  "homepage": "https://github.com/nazrars/nazrars.github.io",
+  "private": true
+}
