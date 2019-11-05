@@ -7,8 +7,9 @@
     "prestart": "cpy node_modules/@fortawesome/fontawesome-pro/webfonts/*.* src/webfonts",
     "start": "parcel src/index.html --no-cache",
     "prebuild": "npm run prestart",
-    "build": "parcel build src/index.html --out-dir docs --public-url ./ --no-cache",
-    "deploy": "npm run build && git add . && git commit -a -m 'latest build' && git push origin master"
+    "build": "parcel build src/index.html --public-url ./ --no-cache",
+    "predeploy": "rimraf dist && npm run build",
+    "deploy": "gh-pages -d dist"
   },
   "repository": {
     "type": "git",
@@ -24,7 +25,9 @@
   "devDependencies": {
     "@fortawesome/fontawesome-pro": "^5.11.2",
     "cpy-cli": "^2.0.0",
+    "gh-pages": "^2.1.1",
     "parcel-bundler": "^1.12.4",
+    "rimraf": "^3.0.0",
     "sass": "^1.23.0",
     "typescript": "^3.6.4"
   }
