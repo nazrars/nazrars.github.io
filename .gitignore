@@ -1,1 +1,48 @@
-node_modules/
+# See http://help.github.com/ignore-files/ for more about ignoring files.
+
+# compiled output
+/dist
+/src/webfonts
+/tmp
+/out-tsc
+/.cache
+# Only exists if Bazel was run
+/bazel-out
+
+# dependencies
+/node_modules
+
+# profiling files
+chrome-profiler-events*.json
+speed-measure-plugin*.json
+
+### IntelliJ IDEA ###
+.idea/artifacts
+.idea/dataSources*
+.idea/dictionaries
+.idea/libraries
+.idea/modules
+.idea/shelf
+.idea/dataSources.xml
+.idea/modules.xml
+.idea/workspace.xml
+.idea/uiDesigner.xml
+.idea/tasks.xml
+.idea/dynamic.xml
+.idea/kotlinc.xml
+*.iws
+*.ipr
+
+# misc
+/.sass-cache
+/connect.lock
+/coverage
+/libpeerconnection.log
+npm-debug.log
+yarn-error.log
+testem.log
+/typings
+
+# System Files
+.DS_Store
+Thumbs.db

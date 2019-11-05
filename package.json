@@ -1,27 +1,31 @@
 {
   "name": "nazrars.github.io",
-  "version": "1.0.0",
-  "description": "",
-  "dependencies": {
-    "bower": "^1.4.1"
-  },
-  "devDependencies": {
-    "gulp": "^3.8.11",
-    "gulp-autoprefixer": "^2.3.0",
-    "gulp-sass": "^2.0.1"
-  },
+  "version": "2.0.0",
+  "description": "CV of Andreas Lindberg",
+  "browser": "docs/index.html",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "prestart": "cpy node_modules/@fortawesome/fontawesome-pro/webfonts/*.* src/webfonts",
+    "start": "parcel src/index.html --no-cache",
+    "prebuild": "npm run prestart",
+    "build": "parcel build src/index.html --out-dir docs --public-url ./ --no-cache",
+    "deploy": "npm run build && git add . && git commit -a -m 'latest build' && git push origin master"
   },
   "repository": {
     "type": "git",
-    "url": "https://nazrars:index.html@github.com/nazrars/nazrars.github.io"
+    "url": "git+https://github.com/nazrars/nazrars.github.io.git"
   },
-  "author": "",
+  "author": "Andreas Lindberg <nazrars@gmail.com>",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/nazrars/nazrars.github.io/issues"
   },
-  "homepage": "https://github.com/nazrars/nazrars.github.io",
-  "private": true
+  "homepage": "https://nazrars.github.io",
+  "dependencies": {},
+  "devDependencies": {
+    "@fortawesome/fontawesome-pro": "^5.11.2",
+    "cpy-cli": "^2.0.0",
+    "parcel-bundler": "^1.12.4",
+    "sass": "^1.23.0",
+    "typescript": "^3.6.4"
+  }
 }
