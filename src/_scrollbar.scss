@@ -1,7 +1,7 @@
 ::-webkit-scrollbar {
   background: transparentize(#dadce0, .8);
-  height: 8px;
-  width: 8px
+  height: $scrollbar-width;
+  width: $scrollbar-width;
 }
 
 ::-webkit-scrollbar-thumb {

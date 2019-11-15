@@ -1,10 +1,14 @@
 @charset "UTF-8";
 
+$scrollbar-width: 8px;
 $primary-color: darken(#4682b4, 5%); // steelblue
 $text-color: #333;
 $link-color: $text-color;
 $background-color: #f5f5f5;
-$page-width-cap: 55rem;
+
+$a4-width: 21cm;
+$a4-height: 29.7cm;
+
 $font-family: 'Roboto, "Open Sans", "Helvetica Neue", sans-serif';
 
 @import "webfonts";
@@ -22,6 +26,10 @@ $font-family: 'Roboto, "Open Sans", "Helvetica Neue", sans-serif';
   color: #fff;
 }
 
+*, *:after, *:before {
+  box-sizing: border-box;
+}
+
 html {
   margin: 0;
   padding: 0;
@@ -31,114 +39,97 @@ body {
   margin: 0;
   padding: 0;
 
-  background-color: rgb(204, 204, 204);
+  width: calc(100vw - #{$scrollbar-width});
+  height: calc(100vh - #{$scrollbar-width});
+
+  overflow: auto;
 
   font: normal normal 400 12pt/1.2 $font-family;
   color: $text-color;
 
+  @media screen and (min-width: $a4-width) {
+    width: auto;
+    height: auto;
+
+    background-color: rgb(204, 204, 204);
+  }
+
+  @media screen and (min-width: $a4-width + 2cm) {
+    padding: 1cm;
+  }
+
   @media print {
     background-color: #fff;
+    overflow: visible !important;
   }
 }
 
 page {
   box-sizing: border-box;
   display: block;
-  margin: 0.5cm auto 0;
-  padding: 1cm;
+  padding: 1rem;
 
   // A4
-  width: 21cm;
-  height: 29.7cm;
-  &[layout="landscape"] {
-    width: 29.7cm;
-    height: 21cm;
+  @media screen and (min-width: $a4-width) {
+    margin: 0 auto;
+    padding: 1cm;
+
+    width: $a4-width;
+    height: $a4-height;
+    box-shadow: 0 0 0.5cm rgba(0, 0, 0, 0.5);
   }
 
   background: #fff;
-  box-shadow: 0 0 0.5cm rgba(0, 0, 0, 0.5);
-
-  overflow: auto;
 
   @media print {
     margin: 0 !important;
     padding: 0 !important;
     box-shadow: none !important;
-    overflow: visible !important;
   }
 }
 
-//.page {
-//    padding: 60px;
-//    height: 1329px;
-//    position: relative;
-//    background-color: #fff;
-//
-//    page-break-after: always;
-//}
-//
-//
-//main {
-//  position: relative;
-//  display: flex;
-//  flex-direction: column;
-//  margin: 0 auto;
-//  max-width: $page-width-cap;
-//}
-//
-//nav {
-//  position: sticky;
-//  top: 0;
-//
-//  display: flex;
-//  flex-direction: row-reverse;
-//
-//  z-index: 1;
-//
-//  ul {
-//    display: flex;
-//    padding: 0;
-//    list-style: none;
-//    text-align: right;
-//    font-size: 1.5rem;
-//    //background-color: #fff;
-//  }
-//
-//  li {
-//    display: inline-flex;
-//    margin: 0;
-//    padding: 0;
-//
-//  }
-//
-//  a {
-//    padding: .3rem .4rem;
-//  }
-//}
-//
 header {
-  //  position: sticky;
-  //  top: 0;
-  //
   display: flex;
   flex-direction: column;
   flex: 1 0 auto;
+  margin-bottom: 1rem;
 
-  //  box-shadow: 0 3px 10px -3px rgba(0, 0, 0, .5);
-  //  @media (min-width: $page-width-cap) {
-  //    box-shadow: none;
-  //  }
-  //
+  background-color: #fff;
+
+  color: $primary-color;
+
+  box-decoration-break: clone;
+  transition: all 250ms;
+  will-change: margin, padding, color, background-color, box-shadow;
+
+  @media (max-width: $a4-width) {
+    .scrolled & {
+      position: sticky;
+      top: 0;
+      margin-left: -1rem;
+      margin-right: -1rem;
+      padding-left: 1rem;
+      padding-right: 1rem;
+
+      color: #fff;
+      background-color: $primary-color;
+      box-shadow: 0 3px 10px -3px rgba(0, 0, 0, .5);
+    }
+  }
 }
 
 h1 {
-  margin: .5rem 0 2rem;
+  margin: .5rem 0;
 
   font-weight: 700;
   line-height: .8;
-  font-size: 2.6rem;
-  color: $primary-color;
+  font-size: 8vw;
+  color: inherit;
   text-transform: uppercase;
+
+  @media screen and (min-width: $a4-width) {
+    font-size: 3rem;
+  }
 }
 
 h2 {
@@ -211,7 +202,6 @@ ul {
   padding-left: 1.5em;
 
   li {
-    //margin: .2rem .3rem .4rem;
     padding: .1rem 0;
     //    font-size: calc(1rem + (1px * var(--priority, 0)));
     //    font-weight: calc(400 + (5 * var(--priority, 0)));
@@ -230,61 +220,14 @@ article {
   + article {
     margin-top: 1rem;
   }
-
 }
 
-//i + a,
-//i + span {
-//  padding-left: .5rem;
-//}
-//
-////.contact {
-////    list-style: none;
-////    float: right;
-////    img {
-////        vertical-align: bottom;
-////    }
-////}
-//
-////p {
-////    margin: 0;
-////    padding-bottom: 1em;
-////    &:last-child {
-////        padding-bottom: 0;
-////    }
-////    &.h2 {
-////        margin-top: 1em;
-////    }
-////}
-////
-//// Font Awesome
-////@import 'fontawesome';
-//// default icon color
-////.icon {
-////    width: 1em;
-////    text-align: center;
-////
-////    font-style: normal;
-////    white-space: nowrap;
-////    &:before {
-////        text-align: center;
-////        color: $brand-color;
-////    }
-////}
-//
-////
-////// fix header font size
-////@media screen and (max-width: 600px) {
-////    h1 {
-////        font-size: 3.6em;
-////    }
-////    .contact {
-////        float: none;
-////    }
-////}
-////
-////@media screen and (max-width: 500px) {
-////    h1 {
-////        font-size: 3em;
-////    }
-////}
+.sentinal {
+  // DOM element for triggering the intersection observer event
+  // you can use 'height' to determine when the event is triggered
+  height: 1rem;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+}
