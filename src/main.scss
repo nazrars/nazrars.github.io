@@ -240,38 +240,49 @@ article {
 }
 
 .bookmarks {
-  position: absolute;
-  top: -6px;
+  position: fixed;
   right: 1rem;
+  bottom: 1rem;
 
   // automatic drop shadow respecting clip-path on children
   filter: drop-shadow(-1px 1px 2px rgba(0, 0, 0, 0.5));
 
+  @media (min-width: $a4-width) {
+    position: absolute;
+    top: -6px;
+    right: 1rem;
+    bottom: auto;
+  }
+
   a {
+    position: relative;
     display: inline-block;
-
-    padding: 1rem 0 2rem;
     width: 3rem;
-    text-align: center;
+    height: 3rem;
+    padding: .5rem;
 
-    font-size: 1.2rem;
-    font-weight: 600;
+    font-weight: 400;
+    font-size: 2rem;
+    line-height: 1;
     text-decoration: none;
+    text-align: center;
     white-space: nowrap;
 
-    // corner shadow
-    &:before {
-      content: '';
-      position: absolute;
-      top: 0;
-      right: 100%;
+    @media (min-width: $a4-width) {
+      // corner shadow
+      &:before {
+        content: '';
+        position: absolute;
+        top: 0;
+        right: 100%;
 
-      border-width: 3px 2px;
-      border-style: solid;
-      border-color: transparent rgba(0, 0, 0, .6) rgba(0, 0, 0, .6) transparent;
+        border-width: 3px 2px;
+        border-style: solid;
+        border-color: transparent rgba(0, 0, 0, .6) rgba(0, 0, 0, .6) transparent;
+      }
     }
 
-    // clipped background
+    // background
     &:after {
       content: '';
       position: absolute;
@@ -280,26 +291,43 @@ article {
       right: 0;
       bottom: 0;
 
-      border-width: 0 1.5rem 1rem;
+      border-radius: 50%;
+
+      border-width: 1.5rem;
       border-style: solid;
-      border-color: currentColor currentColor transparent currentColor;
+      border-color: currentColor;
       z-index: -1;
-    }
 
-    @media print {
-      display: none;
-    }
 
-    i {
-      font-size: 2rem;
-      font-weight: 400;
-      color: #fff;
+      @media (min-width: $a4-width) {
+       border-radius: unset;
+        border-top-width: 3rem;
+        border-bottom-color: transparent;
+        z-index: -1;
+      }
+
     }
+  }
+
+  i {
+    color: #fff;
   }
 
   // brand color
   .linkedin {
     color: #0077b5;
+
+    i:after {
+      content: fa-content($fa-var-linkedin-in);
+
+      @media (min-width: $a4-width) {
+        content: fa-content($fa-var-linkedin);
+      }
+    }
+  }
+
+  @media print {
+    display: none;
   }
 }
 
