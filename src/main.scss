@@ -71,6 +71,7 @@ page {
 
   // A4
   @media screen and (min-width: $a4-width) {
+    position: relative;
     margin: 0 auto;
     padding: 1cm;
 
@@ -171,16 +172,6 @@ h3 {
 //}
 //}
 
-
-//a {
-//  color: $link-color;
-//  text-decoration: none;
-//
-//  &:hover {
-//    //text-decoration: none;
-//  }
-//}
-//
 section {
   display: flex;
   flex-direction: column;
@@ -203,7 +194,7 @@ ol {
     display: inline-flex;
     margin: .2rem .3rem .4rem;
     padding: .1rem .4rem;
-    border-bottom: 1px dashed grayscale($primary-color);
+    border-bottom: 1px solid lighten($text-color, 60%);
   }
 }
 
@@ -241,11 +232,74 @@ article {
 
   time {
     font-size: .8rem;
-    text-transform: uppercase;
   }
 
   + article {
     margin-top: 1rem;
+  }
+}
+
+.bookmarks {
+  position: absolute;
+  top: -6px;
+  right: 1rem;
+
+  // automatic drop shadow respecting clip-path on children
+  filter: drop-shadow(-1px 1px 2px rgba(0, 0, 0, 0.5));
+
+  a {
+    display: inline-block;
+
+    padding: 1rem 0 2rem;
+    width: 3rem;
+    text-align: center;
+
+    font-size: 1.2rem;
+    font-weight: 600;
+    text-decoration: none;
+    white-space: nowrap;
+
+    // corner shadow
+    &:before {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 100%;
+
+      border-width: 3px 2px;
+      border-style: solid;
+      border-color: transparent rgba(0, 0, 0, .6) rgba(0, 0, 0, .6) transparent;
+    }
+
+    // clipped background
+    &:after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+
+      border-width: 0 1.5rem 1rem;
+      border-style: solid;
+      border-color: currentColor currentColor transparent currentColor;
+      z-index: -1;
+    }
+
+    @media print {
+      display: none;
+    }
+
+    i {
+      font-size: 2rem;
+      font-weight: 400;
+      color: #fff;
+    }
+  }
+
+  // brand color
+  .linkedin {
+    color: #0077b5;
   }
 }
 
