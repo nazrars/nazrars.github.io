@@ -1,0 +1,26 @@
+overwrite: false
+schema: 
+  - https://graphql.contentful.com/content/v1/spaces/${CONTENTFUL_SPACE}:
+      headers:
+        Authorization: "Bearer ${CONTENTFUL_ACCESS_TOKEN}"
+        Content-Type: "application/json"
+        User-Agent: graphql-codegen
+documents: "{,!(node_modules)/**/}*.graphql"
+generates:
+  src/generated/contentful.d.ts:
+    overwrite: true
+    plugins:
+      - "typescript"
+      - "typescript-operations"
+      - "typescript-graphql-files-modules"
+      - "fragment-matcher"
+    config:
+      immutableTypes: true
+    #   withComponent: false
+    #   withHOC: false
+    #   withHooks: true
+    #   withMutationFn: false
+  ./graphql.schema.json:
+    overwrite: true
+    plugins:
+      - "introspection"

@@ -1,0 +1,66 @@
+query Resume(
+    $preview: Boolean
+    $locale: String,
+    $person: String,
+) {
+    resumeCollection(
+        where: {
+            person: { name: $person }
+        },
+        limit: 1,
+        preview: $preview,
+        locale: $locale,
+    ) {
+        items {
+            sys{id}
+            person {
+                name
+                email
+                location
+                summary
+                socialMedia
+            }
+            
+            blocksCollection(limit: 10) {
+                items {
+                    ...on Block {
+                        title
+            
+                        content {
+                            json
+                            links {
+                                entries {
+                                    block {
+                                        ...on Entry {
+                                            type: __typename
+                                        }
+                    
+                                        ...on Employment {
+                                            companyName
+                                            companyUrl
+                                            title
+                                            description
+                                            location
+                                            startDate
+                                            endDate
+                                        }
+                    
+                                        ...on Education {
+                                            schoolName
+                                            schoolUrl
+                                            program
+                                            description
+                                            location
+                                            startDate
+                                            endDate
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

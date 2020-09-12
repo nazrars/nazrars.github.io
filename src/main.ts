@@ -1,3 +1,6 @@
+import { Resume } from './resume.graphql'
+
+
 /*
  * Observing if scrolled
  */
@@ -12,4 +15,28 @@ const observer = new IntersectionObserver(entries => {
 });
 
 // give the observer some dom nodes to keep an eye on
-observer.observe(document.querySelector('.sentinal'));
+observer.observe(document.querySelector('.sentinal') as HTMLElement);
+
+
+const SPACE = "y5q3314w81ij";
+const ACCESS_TOKEN = "hIhiDXWQxfTiuh6AVgsJzHXrPxej92E9AWbyVF-G6uI";
+
+const variables = {
+    preview: false,
+    locale: 'en',
+    person: "Andreas Lindberg"
+};
+
+const query = `
+    `.trim();
+
+fetch(`https://graphql.contentful.com/content/v1/spaces/${SPACE}`, {
+    method: 'POST',
+    body: JSON.stringify({ query, variables }),
+    mode: "cors",
+    credentials: 'same-origin',
+    headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${ACCESS_TOKEN}`,
+    },
+});
